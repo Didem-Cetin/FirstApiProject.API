@@ -1,0 +1,53 @@
+﻿@model List<Product>
+
+<div class="row">
+    <div class="col">
+        <h1>Products Page</h1>
+        <hr />
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col">
+        <a asp-action="Create" class="btn btn-secondary">Create Product</a>
+    </div>
+</div>
+
+@if (TempData["Result"] !=null)
+{
+    <div class="alert alert-info my-3">@TempData["result"]</div>
+}
+
+<div class="row mt-3">
+    <div class="col">
+        <table class="table table-hover table-sm table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Product item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Category</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
